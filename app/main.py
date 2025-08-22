@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 # Import from your internal utils
 from utils.functions import get_context
-from llm_engine import llm, ask_llm  # si tu función ask_llm está definida ahí
+from llm_engine import ask_llm  # si tu función ask_llm está definida ahí
 from rag_engine import qdrant  # instancia de Qdrant
 origins = [
     "http://localhost:5173",  # si probás localmente
