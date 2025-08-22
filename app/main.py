@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 # Import from your internal utils
-from utils.functions import get_context
-from llm_engine import ask_llm  # si tu función ask_llm está definida ahí
-from rag_engine import qdrant  # instancia de Qdrant
+from app.utils.functions import get_context
+from app.llm_engine import ask_llm
+from app.rag_engine import qdrant
 origins = [
     "http://localhost:5173",  # si probás localmente
 ]
