@@ -5,7 +5,7 @@ Useful for similarity search and preparing input for language models.
 """
 
 
-def get_context(user_question, qdrant, k=5):
+def get_context(user_question, qdrant_instance, k=5):
     """
     Retrieve the top-k most relevant text chunks from a Qdrant vector store.
 
@@ -21,5 +21,5 @@ def get_context(user_question, qdrant, k=5):
         str: A single string containing the contents of the top-k documents,
              separated by newline characters.
     """
-    docs = qdrant.similarity_search(user_question, k=k)
+    docs = qdrant_instance.similarity_search(user_question, k=k)
     return "\n".join([doc.page_content for doc in docs])

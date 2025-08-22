@@ -2,10 +2,11 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from utils.function import get_context
-from llm_engine import ask_llm
-from rag_engine import qdrant
 
+# Import from your internal utils
+from utils.functions import get_context
+from llm_engine import llm, ask_llm  # si tu función ask_llm está definida ahí
+from rag_engine import qdrant  # instancia de Qdrant
 origins = [
     "http://localhost:5173",  # si probás localmente
 ]
