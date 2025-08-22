@@ -2,6 +2,9 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from utils.function import get_context
+from llm_engine import ask_llm
+from rag_engine import qdrant
 
 origins = [
     "http://localhost:5173",  # si probás localmente
@@ -35,12 +38,10 @@ async def upload_pdf(file: UploadFile = File(...)):
 class Message(BaseModel):
     user_input: str
 
+
 @app.post("/chat/")
 async def chat_endpoint(message: Message):
     user_text = message.user_input
-    
-    # Acá llamás a tu RAG + LLM
-    # Por ahora solo simulamos respuesta
-    bot_response = f"Respuesta del bot a: {user_text}"
-
+    context = get_context(user_text, qdrant)
+    bot_response = ask_llm(context, user_text)
     return {"response": bot_response}
